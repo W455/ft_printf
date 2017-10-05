@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 22:47:16 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/05 23:12:31 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/06 01:04:33 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void    add_to_buff(t_flag *env, char c)
     }
     BUFFER[INDEX++] = c;
     N_PRINT++;
+    env->width--;
 }
 
 /*
@@ -96,21 +97,22 @@ void    conv_d(t_flag *env, int n)
 int main(void)
 {
     static t_flag env;
-    char *s = "10->|%-010  s|\n";
-    char *st = "test 12 test 12 ramsaousmiss";
+    char *s = "10->|%10.5s|\n";
+    char *st = "123456789";
     
     int i = -1;
-
+    env.precision = 0;
+    
     while (*s)
     {
         if (*s == '%')
         {
             s += get_flags(s, &env);
+           // printf(" avant : %d\n", env.precision);
             conv_s(st, &env);
-            printf("%s", env.buff);
         }
         else
-            printf("%c", *s);
+            write(1, s, 1);
         s++;
     }
     i = -1;

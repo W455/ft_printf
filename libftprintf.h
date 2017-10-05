@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 17:51:35 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/05 23:08:39 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/05 23:50:05 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <limits.h>
 
-# define BUFF_SIZE 3477594 
+# define BUFF_SIZE 1 
 # define INDEX env->i
 # define BUFFER env->buff
 # define N_PRINT env->n_printed
