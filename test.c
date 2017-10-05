@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 19:47:14 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/09/07 23:30:49 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/05 22:58:10 by nkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int main(void)
 	infadd(2, 1, 4); //, 1, 2, 3, 4, 5, 6, 7, 8);
 	//	infadd();
 	int a = 42;
-	printf(" 1->%");//, printf("%u", -42, 24, 12));
+/*	printf(" 1->%");//, printf("%u", -42, 24, 12));
 	printf(" 2->4567 |%-10]5d| plip\n", 1);
 	printf(" 3->4567 |%10]5d| plip\n", 12);
 	printf(" 4->|%010.3d|\n", -12);
@@ -92,5 +92,14 @@ int main(void)
 	double x = 123456.;
 	wchar_t c = L'ę';
 	long n = 1000000;
-	printf("n = %llhhhlO\n", 9);
+	printf("n = %llhhhlO\n", 9);*/
+
+	ft_printf("test \n");
+	int i = 0;
+	while (i < 6)
+	{
+		ft_printf("%d \n\n",i);
+	}
+
+
 }
