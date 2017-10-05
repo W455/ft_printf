@@ -6,7 +6,7 @@
 /*   By: nkrifa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 19:39:13 by nkrifa            #+#    #+#             */
-/*   Updated: 2017/10/05 23:12:11 by nkrifa           ###   ########.fr       */
+/*   Updated: 2017/10/05 23:37:16 by nkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	conv_int(t_flag *env, int n, unsigned int size)
 	j = 0;
 	while (n > 0 || size > 0)
 	{
-		add_to_buff(env, (n / 10 ) x ft_power(size));
+		add_to_buff(env, n / (10  x ft_power(size)));
 		size--;
 	}
 	env->i += j;
@@ -99,7 +99,7 @@ void	conv_uint(t_flag *env, unsigned int n, unsigned int size)
 	j = 0;
 	while (n > 0 || size > 0)
 	{
-		add_to_buff(env, (n / 10 ) x ft_power(size));
+		add_to_buff(env, n / (10  x ft_power(size)));
 		size--;
 	}
 	env->i += j;
@@ -112,7 +112,7 @@ void	conv_uninthexa(t_flag *env, int n, unsigned int size)
 	j = 0;
 	while (n > 0 || size > 0)
 	{
-		add_to_buff(env, (n / 16 ) x ft_power(size));
+		add_to_buff(env, n / (16  x ft_power(size)));
 		size--;
 	}
 	env->i += j;
@@ -125,7 +125,7 @@ void	conv_uintoctal(t_flag *env, int n, unsigned int size)
 	j = 0;
 	while (n > 0 || size > 0)
 	{
-		add_to_buff(env, (n / 8 ) x ft_power(size));
+		add_to_buff(env, n / (8  x ft_power(size)));
 		size--;
 	}
 	env->i += j;
@@ -138,7 +138,7 @@ void	conv_uinbinaire(t_flag *env, int n, unsigned int size)
 	j = 0;
 	while (n > 0 || size > 0)
 	{
-		add_to_buff(env, (n / 2 ) x ft_power(size));
+		add_to_buff(env, n / (2  x ft_power(size)));
 		size--;
 	}
 	env->i += j;
