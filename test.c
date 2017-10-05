@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 19:47:14 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/05 22:58:10 by nkrifa           ###   ########.fr       */
+/*   Updated: 2017/10/05 19:40:03 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,31 +75,24 @@ int main(void)
 	infadd(2, 1, 4); //, 1, 2, 3, 4, 5, 6, 7, 8);
 	//	infadd();
 	int a = 42;
-/*	printf(" 1->%");//, printf("%u", -42, 24, 12));
+	printf(" 1->%  12%");//, printf("%u", -42, 24, 12));
+	
 	printf(" 2->4567 |%-10]5d| plip\n", 1);
-	printf(" 3->4567 |%10]5d| plip\n", 12);
-	printf(" 4->|%010.3d|\n", -12);
+	printf(" 3->4567 |%c\n", 1252255555522222555);
+	printf(" 4->|%010d|\n", 0);
 	printf(" 5->|%*d|\n", -2.5, 4);
-	printf(" 6->|%010d|\n", -12); 
-	printf(" 7->|%-5.5f|\n", -1.23456789);
-	printf(" 8->|%0-10.5d|\n", -12);
+	printf(" 6->|%1 -d|\n", 12); 
+	printf(" 7->|%-5.5|\n", -1.23456789);
+	printf(" 8->|%10-.5d|\n", -12);
 	printf(" 8->|%-010.5d|\n", -12);
 	printf(" 8->|%-10.5d|\n", -123456);
-	printf(" 9->|%-10.5s|\n", "abcdefghijklmnopqrstxyz");
+	printf(" 9->|%-10s|\n", "abcdefghijklmnopqrstxyz");
 	printf("10->|%-010.5s|\n", "abcdefghijklmnopqrstxyz");
 	printf("11->|%12s|\n", "bonjour");
 	printf("12->%% lol\n");
 	double x = 123456.;
 	wchar_t c = L'ę';
 	long n = 1000000;
-	printf("n = %llhhhlO\n", 9);*/
-
-	ft_printf("test \n");
-	int i = 0;
-	while (i < 6)
-	{
-		ft_printf("%d \n\n",i);
-	}
-
-
+	printf("n = %llhhhlO\n", 9);
+	
 }

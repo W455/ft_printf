@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 17:51:35 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/09/07 23:06:48 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/05 23:08:39 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 # include "./includes/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
+# include <unistd.h>
 # include <limits.h>
 
 # define BUFF_SIZE 3477594 
+# define INDEX env->i
+# define BUFFER env->buff
+# define N_PRINT env->n_printed
 
 typedef struct      s_flag
 {
@@ -32,5 +36,9 @@ typedef struct      s_flag
     long long       n_printed;
     int             fd;
 }                   t_flag;
+
+void    add_to_buff(t_flag *env, char c);
+void    conv_s(/*va_list *ap*/char *s, t_flag *env);
+
 
 #endif

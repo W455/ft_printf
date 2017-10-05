@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 22:47:16 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/05 19:23:02 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/05 23:12:31 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void    add_to_buff(t_flag *env, char c)
     N_PRINT++;
 }
 
+/*
 void    conv_d(t_flag *env, int n)
 {
     int i = 0;
@@ -90,22 +91,25 @@ void    conv_d(t_flag *env, int n)
         n /= 10;
     }
 }
+*/
 
 int main(void)
 {
     static t_flag env;
-    char *s = "10->|%-010.5s|\n";
-
+    char *s = "10->|%-010  s|\n";
+    char *st = "test 12 test 12 ramsaousmiss";
+    
     int i = -1;
-    //while (++i < 128)
-    //    printf("'%c' = %d \n", i, env.flag[i]);
-    //printf("__________________________\n");
+
     while (*s)
     {
         if (*s == '%')
+        {
             s += get_flags(s, &env);
+            conv_s(st, &env);
+            printf("%s", env.buff);
+        }
         else
-
             printf("%c", *s);
         s++;
     }
