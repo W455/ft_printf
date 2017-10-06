@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 23:03:02 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/05 19:23:02 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/06 20:29:13 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,29 @@ int     ft_fprintf(FILE *stream, const char *format, ...)
 
 int ft_vfprintf(FILE *stream, const char *format, va_list ap)
 {
-    t_flag flag;
+    void (*fun_ptr)(va_list *app, struct s_flag *flag);  
+    static t_flag env;
 
-    flag.n_printed = 0;
-    void (*fun_ptr)(va_list *app, struct s_flag *flag);
-    
-        flag->i = 0;
-        while (*fmt && flag->printed_char >= 0)
+    env.i = 0;
+    env.n_printed = 0;
+    while (*format && env.n_printed >= 0)
+    {
+        if (*format != '%')
+            add_to_buff(&env, *format++);
+        else
         {
-            if (*fmt != '%' || *(++fmt) == '%')
-                add_to_buff(flag, *fmt++);
-            else
-            {
-                if (flag->init == 0)
-                    init_flag(flag);
-                reset_flag(flag);
-                get_flags(flag, &fmt);
-                fun_ptr = flag->cvt[flag->id];
-                if (flag->cvt[flag->id])
-                    fun_ptr(&(flag->ap), flag);
+                if (env.init == 0)
+                    init_flag(&env);
+                reset_flag(&env);
+                get_flags(&env, &format);
+                fun_ptr = env.cvt[env.id];
+                if (env.cvt[env.id])
+                    fun_ptr(&(env.ap), &env);
                 else
-                    fmt--;
-            }
+                    format--;
         }
-        write(1, flag->buff, flag->i);
-        flag->i = 0;
+        }
+    write(1, env.buff, env.i);
     va_end(ap);
-    return (flag.n_printed);
+    return (env.n_printed);
 }

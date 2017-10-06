@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 22:47:16 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/06 01:04:33 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/06 20:25:51 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,25 @@ int get_flags(char * s, t_flag *env)
 {
     char *p = s;
 
-            while (*++s)
-            {
-                is_flag(*s) || is_conv(*s) ? env->flag[*s] = 1 : 0;
-                if (is_conv(*s))  
-                    break ;
-                else if (ft_isdigit(*s) && *s != '0' && *(s - 1) != '.')
-                    {
-                        env->width = 0;
-                        while (ft_isdigit(*s))
-                            env->width = env->width * 10 + *s++ - '0';
-                        s--;
-                    }
-                else if (ft_isdigit(*s) && *(s - 1) == '.')
-                {
-                    while (ft_isdigit(*s))
-                        env->precision = env->precision * 10 + *s++ - '0';
-                    s--;
-                }
+    while (*++s)
+    {
+        is_flag(*s) ? env->flag[*s] = 1 : 0;
+        is_conv(*s) ? env->id = *s : 0;                
+        if (is_conv(*s))  
+            break ;
+        else if (ft_isdigit(*s) && *s != '0' && *(s - 1) != '.')
+        {
+            env->width = 0;
+            while (ft_isdigit(*s))
+                env->width = env->width * 10 + *s++ - '0';
+            s--;
+        }
+        else if (ft_isdigit(*s) && *(s - 1) == '.')
+        {
+            while (ft_isdigit(*s))
+                env->precision = env->precision * 10 + *s++ - '0';
+            s--;
+        }
     }
     return (s - p);
 }

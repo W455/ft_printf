@@ -83,7 +83,7 @@
                                             Conversions (8 mand, 8 bonus)
                 _________________________________________________________________
 
-'s' -->                     Argument converti en const char *. Si precision = n, ecrire n caracteres.
+'s' -->                     Argument converti en const char *. Si precision = n, ecrire n caracteres. ====> FAIT
                             Si 'ls', string en unicode
 
 'S' -->                     Cf 'ls'

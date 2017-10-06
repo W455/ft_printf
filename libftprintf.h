@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 17:51:35 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/05 23:50:05 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/06 20:28:45 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,21 @@ typedef struct      s_flag
     va_list         ap;
     long long       n_printed;
     int             fd;
+    int             init;
+    int             id;
 }                   t_flag;
 
 void    add_to_buff(t_flag *env, char c);
-void    conv_s(/*va_list *ap*/char *s, t_flag *env);
+void    conv_s(va_list *ap, t_flag *env);
+
+int ft_printf(const char *format, ...);
+int ft_fprintf(FILE *stream, const char *format, ...);
+int ft_sprintf(char *str, const char *format, ...);
+int ft_snprintf(char *str, size_t size, const char *format, ...);
+int ft_vprintf(const char *format, va_list ap);
+int ft_vfprintf(FILE *stream, const char *format, va_list ap);
+int ft_vsprintf(char *str, const char *format, va_list ap); 
+int ft_vsnprintf(char *str, size_t size, const char *format, va_list ap);
 
 
 #endif
