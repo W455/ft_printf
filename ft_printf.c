@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 23:03:02 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/06 20:29:13 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/06 20:34:17 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int ft_vfprintf(FILE *stream, const char *format, va_list ap)
 
     env.i = 0;
     env.n_printed = 0;
+    env.fd = stream->_file;
     while (*format && env.n_printed >= 0)
     {
         if (*format != '%')
@@ -77,7 +78,7 @@ int ft_vfprintf(FILE *stream, const char *format, va_list ap)
                     format--;
         }
         }
-    write(1, env.buff, env.i);
+    write(env.fd, env.buff, env.i);
     va_end(ap);
     return (env.n_printed);
 }

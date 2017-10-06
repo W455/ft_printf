@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 22:47:16 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/06 20:25:51 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/06 20:34:08 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,6 @@ void    add_to_buff(t_flag *env, char c)
     env->width--;
 }
 
-/*
-void    conv_d(t_flag *env, int n)
-{
-    int i = 0;
-
-    while (n > 0)
-    {
-        add_to_buff(env, n / 10 * ft_power());
-        n /= 10;
-    }
-}
-*/
-
 int main(void)
 {
     static t_flag env;
@@ -103,8 +90,7 @@ int main(void)
     
     int i = -1;
     env.precision = 0;
-    
-    while (*s)
+     while (*s)
     {
         if (*s == '%')
         {
