@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 22:47:16 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/06 20:34:08 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/09 21:56:15 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@ bool is_flag(char c)
     return (False);
 }
 
-int get_flags(char * s, t_flag *env)
+void    get_flags(char *s, t_flag *env)
 {
-    char *p = s;
-
     while (*++s)
     {
-        is_flag(*s) ? env->flag[*s] = 1 : 0;
+        is_flag(*s) ? env->flag[*s] = 1 : 0;        
+        *s == '0' && *(s - 1) == '.' ? env->flag['0'] = 0 : 1;
         is_conv(*s) ? env->id = *s : 0;                
         if (is_conv(*s))  
             break ;
@@ -60,14 +59,14 @@ int get_flags(char * s, t_flag *env)
                 env->width = env->width * 10 + *s++ - '0';
             s--;
         }
-        else if (ft_isdigit(*s) && *(s - 1) == '.')
+        else if ((ft_isdigit(*s) && *(s - 1) == '.'))
         {
+            env->precision = 0;
             while (ft_isdigit(*s))
                 env->precision = env->precision * 10 + *s++ - '0';
             s--;
         }
     }
-    return (s - p);
 }
 
 void    add_to_buff(t_flag *env, char c)
@@ -81,7 +80,7 @@ void    add_to_buff(t_flag *env, char c)
     N_PRINT++;
     env->width--;
 }
-
+/*
 int main(void)
 {
     static t_flag env;
@@ -109,3 +108,4 @@ int main(void)
     printf("width = %d\n", env.width);
     printf("precision = %d\n", env.precision);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 01:05:38 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/06 01:33:11 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/09 21:47:18 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,21 @@ static void     null_ptr(t_flag *env)
 void    conv_s(va_list *ap, t_flag *env)
 {
     char    *s;
+    char    *end;
 
-    s = va_arg(*ap, char *);
+    s = va_arg(*ap, char *);       
     if (!s)
     {
         null_ptr(env);
         return ;
     }
-    if (env->precision > ft_strlen(s) || env->precision < 0)
-        env->precision = ft_strlen(s);
-    put_s(s, env);
+    while (*end)
+        end++;
+
+        if (env->precision > (int)ft_strlen(s))
+            env->precision = (int)ft_strlen(s);
+        if (env->precision < 0)
+            env->precision = 0;
+    //printf("\n=== precision = %d et width = %d.\n", env->precision, env->width);
+    s ? put_s(s, env) : 0;
 }

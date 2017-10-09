@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 17:51:35 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/06 20:28:45 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/09 21:55:58 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,17 @@ typedef struct      s_flag
     int             id;
 }                   t_flag;
 
+void			init_flag(t_flag *flag);
+void			reset_flag(t_flag *env);
+
 void    add_to_buff(t_flag *env, char c);
+void    put_s(char *s, t_flag *env);
 void    conv_s(va_list *ap, t_flag *env);
+
+void    get_flags(char *s, t_flag *env);
+
+void	format_print(t_flag *env, const char *fmt);
+
 
 int ft_printf(const char *format, ...);
 int ft_fprintf(FILE *stream, const char *format, ...);

@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 01:10:59 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/06 20:29:53 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/09 17:48:16 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void			reset_flag(t_flag *env)
 
 static	void	init_cvt(t_flag *env)
 {
+    /*
     env->cvt['d'] = &conv_d;
     env->cvt['D'] = &conv_d;
 	env->cvt['i'] = &conv_d;
@@ -56,7 +57,9 @@ static	void	init_cvt(t_flag *env)
     env->cvt['e'] = &conv_e;
     env->cvt['E'] = &conv_E; 
     env->cvt['g'] = &conv_g;
-    env->cvt['G'] = &conv_g;    
+    env->cvt['G'] = &conv_g;
+    */
+    env->cvt['s'] = &conv_s;    
 }
 
 void			init_flag(t_flag *flag)

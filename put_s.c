@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 22:44:42 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/06 01:06:30 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/09 21:48:06 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ static void    put_space(int pos, t_flag *env)
         env->flag['-'] ? 1 : env->precision++;
     }
     if (pos == 2)
-        while (env->flag['-'] && env->width >= 0)
-            add_to_buff(env, ' ');
+       while (env->flag['-'] && env->width >= env->precision + 2)
+           add_to_buff(env, ' ');
 }
 
 static void    put_value(t_flag *env, char *s)
 {
-    while (*s && env->precision--)
-        add_to_buff(env, *s++);
+    while (*s && env->precision-- > 1)
+        add_to_buff(env, *s++);  
 }
 
 static void    put_0(t_flag *env)
 {
-    while (env ->width >= env->precision && env->flag['0'] && !env->flag['-'])
+    while (env ->width >= env->precision && env->flag['0'] && !env->flag['-'] && env->n_printed >= 0)
         add_to_buff(env, '0');
 }
 
