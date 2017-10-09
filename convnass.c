@@ -10,6 +10,67 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+unsigned int	size_int_base(int n, unsigned int base)
+{
+	unsigned int size;
+
+	size = 1;
+	if (n < 0)
+	{
+		size++;
+		n = -n;
+	}
+	while(n / 10 > 0)
+	{
+		size++;
+		n = n / base;
+	}
+	return(size);
+}
+
+unsigned int	size_unint_base(unsigned int n, unsigned int base)
+{
+	unsigned int size;
+
+	size = 1;
+	while(n /10 >= 0)
+	{
+		size++;
+		n = n / base;
+	}
+	return(size);
+}
+
+void	conv_int(t_flag *env, int n, unsigned int size, unsigned int base)
+{
+	int j;
+
+	j = 0;
+	if (n < 0)
+	{
+		add_to_buff(env, '-');
+		n = -n;
+	}
+	while (n > 0 || size > 0)
+	{
+		add_to_buff(env, n / (base x ft_power(size)));
+	}
+	env->i += j; 
+}
+
+void	conv_unint(t_flag *env, unsigned int n, unsigned int size, unsigned int base)
+{
+	int j;
+
+	j = 0;
+	while (n > 0 || size > 0)
+	{
+		add_to_buff(env, n / (base x ft_power(size)));
+	}
+	env->i += j; 
+}
+
+/*
 unsigned int	size_int(int n)
 {
 	unsigned int size;
@@ -142,4 +203,4 @@ void	conv_uinbinaire(t_flag *env, int n, unsigned int size)
 		size--;
 	}
 	env->i += j;
-}
+}*/
