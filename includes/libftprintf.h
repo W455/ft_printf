@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 17:51:35 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/12 01:03:47 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/12 01:11:57 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@
 # include <unistd.h>
 # include <limits.h>
 
+# define PRECISION      env->precision
 # define N_PRINT        env->n_printed
-# define BUFFER         env->buff
+# define WIDTH          env->width
+# define BUFF           env->buff
+# define FLAG           env->flag
+# define ID             env->id
 # define INDEX          env->i
 
 # define BUFF_SIZE      55278

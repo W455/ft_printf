@@ -5,13 +5,13 @@ static void     put_space(int pos, t_flag *env)
 {
     if (pos == 1)
     {
-        while (!env->flag('-') && !env->flag['0']) && 
-                env->width > env->precision)
+        while (!FLAG('-') && !FLAG['0']) && 
+                env->width > PRECISION)
                 add_to_buff(env, ' ');
-        env->flag('-') ? 1 : env->precision++;
+        FLAG('-') ? 1 : PRECISION++;
     }    
     if (pos == 2)
-        while (env->flag['-'] && env->width >= 0)
+        while (FLAG['-'] && env->width >= 0)
             add_to_buff(env, ' ');
 }
 

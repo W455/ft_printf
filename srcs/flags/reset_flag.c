@@ -1,116 +1,116 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset_env.c                                        :+:      :+:    :+:   */
+/*   reset_flag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 01:10:59 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/11 21:12:16 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/12 01:17:50 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static	void	ft_put_space(int call, int s_len, int len, t_flag *flag)
+static	void	ft_put_space(int call, int s_len, int len, t_flag *env)
 {
 	if (call == 1)
 	{
-		while (!flag->flag['-'] && !flag->flag['0'] && flag->width >
-				(flag->precision > len ? flag->precision : len) + s_len)
+		while (!FLAG['-'] && !FLAG['0'] && env->width >
+				(PRECISION > len ? PRECISION : len) + s_len)
 			add_to_buff(flag, ' ');
 	}
 	else if (call == 2)
 	{
-		while (flag->flag['-'] && flag->width > 0)
+		while (FLAG['-'] && env->width > 0)
 			add_to_buff(flag, ' ');
 	}
 }
 
-long long	get_unsigned(va_list *ap, t_flag *flag)
+long long	get_unsigned(va_list *ap, t_flag *env)
 {
-	if (flag->flag['z'])
+	if (FLAG['z'])
 		return (va_arg(*ap, size_t));
-	if (flag->flag['j'])
+	if (FLAG['j'])
 		return (va_arg(*ap, uintmax_t));
-	if (flag->flag['L'])
+	if (FLAG['L'])
 		return (va_arg(*ap, unsigned long long));
-	if (flag->flag['l'])
+	if (FLAG['l'])
 	{
-		return (flag->id == 'c' ? va_arg(*ap, wchar_t)
+		return (ID == 'c' ? va_arg(*ap, wchar_t)
 				: va_arg(*ap, unsigned long));
 	}
-	if (flag->flag['h'])
+	if (FLAG['h'])
 		return ((unsigned short)va_arg(*ap, unsigned int) & 4294967295);
-	if (flag->flag['H'])
+	if (FLAG['H'])
 		return ((unsigned char)va_arg(*ap, unsigned int) & 4294967295);
 	return (va_arg(*ap, unsigned int) & 4294967295);
 }
 
-long long	ft_printf_get_arg(va_list *ap, t_flag *flag)
+long long	ft_printf_get_arg(va_list *ap, t_flag *env)
 {
-	if (flag->id == 'o' || flag->id == 'x' || flag->id == 'X' ||
-			flag->id == 'u')
-		return (get_unsigned(ap, flag));
+	if (ID == 'o' || ID == 'x' || flag->id == 'X' ||
+			ID == 'u')
+		return (get_unsigned(ap, env));
 	else
 	{
-		if (flag->flag['z'])
+		if (FLAG['z'])
 			return (va_arg(*ap, size_t));
-		if (flag->flag['j'])
+		if (FLAG['j'])
 			return (va_arg(*ap, intmax_t));
-		if (flag->flag['L'])
+		if (FLAG['L'])
 			return (va_arg(*ap, long long));
-		if (flag->flag['l'])
+		if (FLAG['l'])
 			return (va_arg(*ap, long));
-		if (flag->flag['h'])
+		if (FLAG['h'])
 			return ((short)va_arg(*ap, int) & 4294967295);
-		if (flag->flag['H'])
+		if (FLAG['H'])
 			return ((signed char)va_arg(*ap, int) & 4294967295);
 	}
 	return (va_arg(*ap, int) & 4294967295);
 }
-static	void	ft_put_sign(t_flag *flag, int s_len)
+static	void	ft_put_sign(t_flag *env, int s_len)
 {
-	if (flag->flag['#'] && s_len)
+	if (FLAG['#'] && s_len)
 	{
 		add_to_buff(flag, '0');
-		flag->id == 'x' || flag->id == 'p' ? add_to_buff(flag, 'x') : 0;
-		flag->id == 'X' ? add_to_buff(flag, 'X') : 0;
-		flag->id == 'b' ? add_to_buff(flag, 'b') : 0;
-		flag->precision >= 0 && flag->id == 'o' ?
-			(flag->precision -= s_len) : 0;
+		ID == 'x' || ID == 'p' ? add_to_buff(env, 'x') : 0;
+		ID == 'X' ? add_to_buff(env, 'X') : 0;
+		ID == 'b' ? add_to_buff(env, 'b') : 0;
+		PRECISION >= 0 && ID == 'o' ?
+			(PRECISION -= s_len) : 0;
 	}
 	else
 	{
-		flag->flag[' '] ? add_to_buff(flag, ' ') : 0;
-		flag->flag['+'] == 1 ? add_to_buff(flag, '+') : 0;
-		flag->flag['+'] == 2 ? add_to_buff(flag, '-') : 0;
+		FLAG[' '] ? add_to_buff(env, ' ') : 0;
+		FLAG['+'] == 1 ? add_to_buff(env, '+') : 0;
+		FLAG['+'] == 2 ? add_to_buff(env, '-') : 0;
 	}
 }
 
-static	void	ft_put_precision_or_0(t_flag *flag, int len)
+static	void	ft_put_precision_or_0(t_flag *env, int len)
 {
-	if (flag->precision == -1 && flag->flag['0'])
-		flag->precision = flag->width;
-	while (flag->precision-- > len)
+	if (PRECISION == -1 && FLAG['0'])
+		PRECISION = env->width;
+	while (PRECISION-- > len)
 		add_to_buff(flag, '0');
 }
 
-static	void	ft_put_value(t_flag *flag, char *p)
+static	void	ft_put_value(t_flag *env, char *p)
 {
-	if (flag->id == 'c')
-		add_to_buff(flag, *p++);
+	if (ID == 'c')
+		add_to_buff(env, *p++);
 	while (*p)
 		add_to_buff(flag, *p++);
 }
 
-void			ft_printf_putd(char *p, int len, t_flag *flag, int s_len)
+void			ft_printf_putd(char *p, int len, t_flag *env, int s_len)
 {
-	flag->width ? ft_put_space(1, s_len, len, flag) : 0;
-	s_len ? ft_put_sign(flag, s_len) : 0;
-	ft_put_precision_or_0(flag, len);
-	ft_put_value(flag, p);
-	flag->width > 0 ? ft_put_space(2, s_len, len, flag) : 0;
+	env->width ? ft_put_space(1, s_len, len, env) : 0;
+	s_len ? ft_put_sign(env, s_len) : 0;
+	ft_put_precision_or_0(env, len);
+	ft_put_value(env, p);
+	env->width > 0 ? ft_put_space(2, s_len, len, env) : 0;
 }
 
 static	char	*cvt_d1(unsigned long long nbr, char *buf)
@@ -129,7 +129,7 @@ static	char	*cvt_d1(unsigned long long nbr, char *buf)
 	return (p);
 }
 
-void			conv_d(va_list *app, t_flag *flag)
+void			conv_d(va_list *app, t_flag *env)
 {
 	long long		nbr;
 	char			buf[44];
@@ -138,47 +138,47 @@ void			conv_d(va_list *app, t_flag *flag)
 
 	s_len = 0;
 	nbr = 0;
-	nbr = ft_printf_get_arg(app, flag);
-	nbr = (flag->flag['l'] || flag->flag['L'] || flag->flag['z'] ||
-			flag->flag['j']) ? nbr : (int)nbr;
+	nbr = ft_printf_get_arg(app, env);
+	nbr = (FLAG['l'] || FLAG['L'] || FLAG['z'] ||
+			FLAG['j']) ? nbr : (int)nbr;
 	p = cvt_d1(nbr > 0 ? nbr : -nbr, buf);
-	if (nbr <= 4294967295 && !(flag->flag['l'] || flag->flag['L'] ||
-				flag->flag['z'] || flag->flag['j']))
+	if (nbr <= 4294967295 && !(FLAG['l'] || FLAG['L'] ||
+				FLAG['z'] || FLAG['j']))
 	{
-		(int)nbr < 0 ? flag->flag['+'] = 2 : 0;
-		(int)nbr < 0 ? flag->flag[' '] = 0 : 0;
+		(int)nbr < 0 ? FLAG['+'] = 2 : 0;
+		(int)nbr < 0 ? FLAG[' '] = 0 : 0;
 	}
 	else
 	{
-		nbr < 0 ? flag->flag['+'] = 2 : 0;
-		nbr < 0 ? flag->flag[' '] = 0 : 0;
+		nbr < 0 ? FLAG['+'] = 2 : 0;
+		nbr < 0 ? FLAG[' '] = 0 : 0;
 	}
-	flag->flag['+'] || flag->flag[' '] ? s_len = 1 : 0;
-	flag->precision == 0 && *p == '0' ? p = (buf + sizeof(buf)) : 0;
-	ft_printf_putd(p, (buf + sizeof(buf)) - p, flag, s_len);
+	FLAG['+'] || FLAG[' '] ? s_len = 1 : 0;
+	PRECISION == 0 && *p == '0' ? p = (buf + sizeof(buf)) : 0;
+	ft_printf_putd(p, (buf + sizeof(buf)) - p, env, s_len);
 }
 
 
 void			reset_flag(t_flag *env)
 {
-    env->flag['\''] = 0;    
-	env->flag['l'] = 0;
-	env->flag['L'] = 0;
-	env->flag['h'] = 0;
-	env->flag['H'] = 0;
-	env->flag['z'] = 0;
-	env->flag['j'] = 0;
-    env->flag['0'] = 0;
-	env->flag['+'] = 0;    
-	env->flag['-'] = 0;
-	env->flag[' '] = 0;
-	env->flag['.'] = 0;
-    env->flag['*'] = 0;	
-    env->flag['#'] = 0;
-    env->flag['$'] = 0; 
-    env->precision = -1;    
+    FLAG['\''] = 0;    
+	FLAG['l'] = 0;
+	FLAG['L'] = 0;
+	FLAG['h'] = 0;
+	FLAG['H'] = 0;
+	FLAG['z'] = 0;
+	FLAG['j'] = 0;
+    FLAG['0'] = 0;
+	FLAG['+'] = 0;    
+	FLAG['-'] = 0;
+	FLAG[' '] = 0;
+	FLAG['.'] = 0;
+    FLAG['*'] = 0;	
+    FLAG['#'] = 0;
+    FLAG['$'] = 0; 
+    PRECISION = -1;    
 	env->width = 0;
-	env->id = 0;
+	ID = 0;
 }
 
 static	void	init_cvt(t_flag *env)
@@ -207,10 +207,10 @@ static	void	init_cvt(t_flag *env)
     */
 }
 
-void			init_flag(t_flag *flag)
+void			init_flag(t_flag *env)
 {
-    flag->cvt['s'] = &conv_s;    
-    flag->cvt['d'] = &conv_d;
+    env->cvt['s'] = &conv_s;    
+    env->cvt['d'] = &conv_d;
 	//flag->init++;
 	//init_cvt(flag);
 }

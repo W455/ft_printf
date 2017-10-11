@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 23:00:41 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/11 23:33:24 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/12 01:21:13 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	format_print(t_flag *env, const char *format)
                     init_flag(env);
                 reset_flag(env);
                 get_flags((char *)(format), env);              
-                fun_ptr = env->cvt[env->id];   
-                if (env->cvt[env->id])
+                fun_ptr = env->cvt[ID];   
+                if (env->cvt[ID])
                     fun_ptr(&env->ap, env);
-               while (*format != env->id && *format)
+               while (*format != ID && *format)
                     format++;
                 format++;
         }
@@ -46,7 +46,7 @@ void    add_to_buff(t_flag *env, char c)
         write(env->fd, BUFFER, BUFF_SIZE);
         INDEX = 0;
     }
-    BUFFER[INDEX++] = c;
+    BUFF[INDEX++] = c;
     N_PRINT++;
-    env->width--;
+    WIDTH--;
 }

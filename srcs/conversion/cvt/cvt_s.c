@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 01:05:38 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/09 21:47:18 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/12 01:12:01 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void    conv_s(va_list *ap, t_flag *env)
     while (*end)
         end++;
 
-        if (env->precision > (int)ft_strlen(s))
-            env->precision = (int)ft_strlen(s);
-        if (env->precision < 0)
-            env->precision = 0;
-    //printf("\n=== precision = %d et width = %d.\n", env->precision, env->width);
+        if (PRECISION > (int)ft_strlen(s))
+            PRECISION = (int)ft_strlen(s);
+        if (PRECISION < 0)
+            PRECISION = 0;
+    //printf("\n=== precision = %d et width = %d.\n", PRECISION, env->width);
     s ? put_s(s, env) : 0;
 }

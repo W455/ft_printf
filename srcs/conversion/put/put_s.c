@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 22:44:42 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/09 21:48:06 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/12 01:12:09 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ static void    put_space(int pos, t_flag *env)
 {
     if (pos == 1)
     {
-        while (!env->flag['-'] && !env->flag['0'] && 
-                env->width > env->precision)
+        while (!FLAG['-'] && !FLAG['0'] && 
+                env->width > PRECISION)
                 add_to_buff(env, ' ');
-        env->flag['-'] ? 1 : env->precision++;
+        FLAG['-'] ? 1 : PRECISION++;
     }
     if (pos == 2)
-       while (env->flag['-'] && env->width >= env->precision + 2)
+       while (FLAG['-'] && env->width >= PRECISION + 2)
            add_to_buff(env, ' ');
 }
 
 static void    put_value(t_flag *env, char *s)
 {
-    while (*s && env->precision-- > 1)
+    while (*s && PRECISION-- > 1)
         add_to_buff(env, *s++);  
 }
 
 static void    put_0(t_flag *env)
 {
-    while (env ->width >= env->precision && env->flag['0'] && !env->flag['-'] && env->n_printed >= 0)
+    while (env ->width >= PRECISION && FLAG['0'] && !FLAG['-'] && env->n_printed >= 0)
         add_to_buff(env, '0');
 }
 
