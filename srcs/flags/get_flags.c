@@ -6,41 +6,29 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 22:47:16 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/09 21:56:15 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/12 01:03:48 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_isdigit(int c)
-{
-	return ((c >= 48 && c <= 57) ? 1 : 0);
-}
 
 typedef enum {False = 0, True = 1} bool;
 
-bool is_conv(char c)
+int     is_conv(char c)
 {
-    bool i;
-
-    if (c == 'S' || c == 's' || c == 'p' || c == 'd' || c == 'D'
+    return ((c == 'S' || c == 's' || c == 'p' || c == 'd' || c == 'D'
 || c == 'i' || c == 'o' || c == 'O' || c == 'u' || c == 'u'
 || c == 'U' || c == 'x' || c == 'X' || c == 'c' || c == 'C' || c == 'e'
 || c == 'E' || c == 'g' || c == 'G' || c == 'a' || c == 'A'
-|| c == 'n' || c == 'b' || c == '%')
-    i = True;
-    else
-        i = False;
-    return (i);
+|| c == 'n' || c == 'b' || c == '%') ? TRUE : FALSE);
 }
 
-bool is_flag(char c)
+int     is_flag(char c)
 {
-    if (c == 'l' || c == 'L' || c == 'j' || c == 'z'
+    return ((c == 'l' || c == 'L' || c == 'j' || c == 'z'
 || c == 'h' || c == ' ' || c == '0' || c == '-' || c == '+'
-|| c == '.' || c == '$' || c == '\'' || c == '*')
-        return(True);
-    return (False);
+|| c == '.' || c == '$' || c == '\'' || c == '*') ? TRUE : FALSE);
 }
 
 void    get_flags(char *s, t_flag *env)
