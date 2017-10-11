@@ -47,7 +47,8 @@ void    put_s(char *s, t_flag *env);
 void    conv_s(va_list *ap, t_flag *env);
 
 void    get_flags(char *s, t_flag *env);
-
+void    conv_int(t_flag *env, int n, unsigned int base);
+void    conv_unint(t_flag *env, unsigned int n, unsigned int base);
 void	format_print(t_flag *env, const char *fmt);
 
 

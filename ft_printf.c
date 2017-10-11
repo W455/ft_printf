@@ -125,7 +125,12 @@ int ft_vfprintf(FILE *stream, const char *fmt, va_list ap)
 
 int main(void)
 {
-    ft_printf("01234%10.005s5678%05.15s9", "test", "lorem ipsum");
-    printf("\n01234%10.005s5678%05.15s9", "test", "lorem ipsum");
-    
+    int i = 1;
+    while (i < 10)
+    {
+        ft_printf("\n01234%10.005s5678%05.15s9", "test", "lorem ipsum");
+     printf("\n01234%10.005s5678%05.15s9", "test", "lorem ipsum");
+       ft_fprintf("\n %d", i);
+    i++;
+    }
 }
