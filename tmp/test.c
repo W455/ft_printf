@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 19:47:14 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/05 19:40:03 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/06 20:38:38 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ int		infadd(int val0, ...)
 	va_end(ap);
 	printf("Il y a %d valeurs. La somme des arguments est %d.\n", nb_vals, res);
 	return (res);
-
-
-
 }
 
 int test(int val0, va_list ap)
