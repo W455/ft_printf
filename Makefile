@@ -92,7 +92,7 @@ INC			=		$(addprefix -I, $(INC_PATH))
 #===============================================================================
 all 		: 		$(NAME)
 
-$(NAME) 	:		%(SRC)
+$(NAME) 	:		
 					@echo "Compiling sources..."
 					mkdir -p $(OBJ_PATH)
 					make -C libft
