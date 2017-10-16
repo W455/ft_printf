@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 17:51:35 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/12 01:11:57 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/17 00:04:38 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
+# include <locale.h>
+# include <wchar.h>
+# include <inttypes.h>
+
+#define BASE_MAJ    "0123456789ABCDEF"
+#define BASE_MIN    "0123456789abcdef"
+
+#define BINAIRE     2
+#define OCTALE      8
+#define HEXA        16
 
 # define PRECISION      env->precision
 # define N_PRINT        env->n_printed
@@ -30,24 +40,53 @@
 # define BUFF_SIZE      55278
 
 # define TRUE           1
-# define FALSE          -1
+# define FALSE          0
 
-typedef struct      s_flag
+typedef union                   u_cast
 {
-    char            flag[128];
-    char            buff[BUFF_SIZE];
-    int             i;
-    int             precision;
-    int             width;
-    void            *cvt[128];
-    va_list         ap;
-    long long       n_printed;
-    int             fd;
-    int             init;
-    int             id;
-}                   t_flag;
+    int				            d;
+	unsigned int	            u;
+	short			            h;
+	signed char		            hh;
+	char			            c;
+	long int		            l;
+	long long int	            ll;
+	float			             f;
+	intmax_t		            j;
+	wint_t			            lc;
+    char			            uni[4];
+    unsigned int				ud;
+	unsigned short				uh;
+	unsigned char				uhh;
+	unsigned long int			ul;
+	unsigned long long int		ull;
+	size_t			            z;
+	uintmax_t					uj;
+}                               t_cast;
 
-void                get_flags(char *s, t_flag *env);
+typedef struct                  s_flag
+{
+    char                        flag[128];
+    char                        buff[BUFF_SIZE];
+    int                         a;
+    int                         b;
+    int                         i;
+    int                         precision;
+    int                         width;
+    void                        *cvt[128];
+    va_list                     ap;
+    long long                   n_printed;
+    int                         fd;
+    int                         init;
+    int                         id;
+}                               t_flag;
+
+char	            *ft_itoa_base(unsigned long long nb, int base, 
+                        char *basef, char *buf, t_flag *env);
+long long	        ft_printf_get_arg(va_list *ap, t_flag *env);
+
+
+int                 get_flags(char *s, t_flag *env);
 void			    reset_flag(t_flag *env);
 void			    init_flag(t_flag *flag);
 
@@ -55,6 +94,11 @@ void                add_to_buff(t_flag *env, char c);
 
 
 void                put_s(char *s, t_flag *env);
+void	    		put_d(char *p, int len, t_flag *env, int s_len);
+void                put_c(char c, t_flag *env);
+
+
+int                 is_conv(char c);
 
 void                conv_mod(va_list *ap, t_flag *env);
 void                conv_lc(va_list *ap, t_flag *env);
@@ -64,6 +108,7 @@ void                conv_n(va_list *ap, t_flag *env);
 void                conv_o(va_list *ap, t_flag *env);
 void                conv_u(va_list *ap, t_flag *env);
 void                conv_x(va_list *ap, t_flag *env);
+void                conv_X(va_list *ap, t_flag *env);
 void                conv_b(va_list *ap, t_flag *env);
 void                conv_e(va_list *ap, t_flag *env);
 void                conv_E(va_list *ap, t_flag *env);
@@ -72,7 +117,7 @@ void                conv_g(va_list *ap, t_flag *env);
 void	            conv_d(va_list *ap, t_flag *flag);
 
 
-void	            format_print(t_flag *env, const char *fmt)
+void	            format_print(t_flag *env, const char *fmt);
 
 
 

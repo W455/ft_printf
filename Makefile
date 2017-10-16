@@ -6,7 +6,7 @@
 #    By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/07 17:58:00 by oukrifa           #+#    #+#              #
-#    Updated: 2017/10/12 01:03:51 by oukrifa          ###   ########.fr        #
+#    Updated: 2017/10/16 19:59:05 by oukrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ LIB_PATH		=	./libft/
 
 #===============================================================================
 # 						SRCS
-#===============	================================================================
+#===============================================================================
 SRC_CVT		= 		cvt_mod.c \
 					cvt_lc.c  \
 					cvt_ls.c  \
@@ -92,13 +92,8 @@ INC			=		$(addprefix -I, $(INC_PATH))
 #===============================================================================
 all 		: 		$(NAME)
 
-$(NAME) 	:		%(SRC)
-					@echo "Compiling sources..."
-					mkdir -p $(OBJ_PATH)
-					make -C libft
-					$(CC) $(CFLAGS) -I $(INC) -l$(LIBFT_PATH)$(LIBFT) -c $^
-					clear
-					@echo "\033[0;32mDone\033[0m\n"
+$(NAME) 	:		$(OBJ)
+					
 
 					@echo "Building libftprintf.a..."
 					$(LIB) $(NAME) $(OBJ)
@@ -109,8 +104,17 @@ $(NAME) 	:		%(SRC)
 					$(RAN) $(NAME)
 					clear
 					@echo "\033[0;32mDone\033[0m\n"
-
 					@echo "\033[3;94m!libftprintf.a done!\033[0m"
+
+$(OBJ)		:		$(SRC) $(INC)
+					@echo "Compiling sources..."
+					mkdir -p $(OBJ_PATH)
+					make -C libft
+					make -C libft clean
+					$(CC) $(CFLAGS) -I $(INC) -L$(LIBFT_PATH) -lft -c $(SRC)
+					clear
+					@echo "\033[0;32mDone\033[0m\n"
+
 
 clean 		:
 					@echo "Deleting .os... for libftprintf.a"

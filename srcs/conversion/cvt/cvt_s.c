@@ -6,11 +6,11 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 01:05:38 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/12 01:12:01 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/13 18:48:10 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "../../../includes/libftprintf.h"
 
 static void     null_ptr(t_flag *env)
 {
@@ -25,7 +25,6 @@ static void     null_ptr(t_flag *env)
 void    conv_s(va_list *ap, t_flag *env)
 {
     char    *s;
-    char    *end;
 
     s = va_arg(*ap, char *);       
     if (!s)
@@ -33,13 +32,7 @@ void    conv_s(va_list *ap, t_flag *env)
         null_ptr(env);
         return ;
     }
-    while (*end)
-        end++;
-
-        if (PRECISION > (int)ft_strlen(s))
-            PRECISION = (int)ft_strlen(s);
-        if (PRECISION < 0)
-            PRECISION = 0;
-    //printf("\n=== precision = %d et width = %d.\n", PRECISION, env->width);
+    (PRECISION > (int)ft_strlen(s) || PRECISION < 0) ? 
+        PRECISION = (int)ft_strlen(s) : 0;
     s ? put_s(s, env) : 0;
 }

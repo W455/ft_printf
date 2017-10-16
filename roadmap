@@ -27,7 +27,7 @@
 
 9/ Sassure du formatage de la conversion.
 
-10/ Recommencer jusqu'a buffer full ou fin printf. Imprimer le buffer dan les deux cas.
+10/ Recommencer jusqu'a buffer full ou fin printf. Imprimer le buffer dan les deux cas --> add_to_buff FAIT
 
                 _________________________________________________________________
 
@@ -46,14 +46,14 @@
 '0'  --> %0d                Si width defini, precede avec des 0 a gauche. 
                             '-' et la precision pour les entiers override '0'
 
-'-'  -->                    Justifie a gauche. Annule '0'
+'-'  -->   FAIT pour s et d Justifie a gauche. Annule '0'
 
-'+'  -->                    '+' avant les nombres positifs signes. Annule ' '
+'+'  -->   FAIT pour d      '+' avant les nombres positifs signes. Annule ' '
 
-' '  -->                    Un espace avant les nombres positifs signes et les chaines vides. 
+' '  -->   FAIT pour d      Un espace avant les nombres positifs signes et les chaines vides. 
                             Annulee par '+'
 
-'.'  -->                    Precision. 0 ou juste '.' == nulle.
+'.'  -->   FAIT s et d      Precision. 0 ou juste '.' == nulle.
                             Pour entier (d i o u x X) nombre minimum de chiffre
                             Pour flottant (a A e E f F) nombres de chiffres apres la virgule
                             Pour g et G, nombres maximums de chiffres apres la vigule
@@ -61,14 +61,16 @@
                                     ----------------------------
 '$'  --> % m $ , .., m      Permet de choisir le m-ieme argument. Commence a 1
 
-'%%' -->                    Affiche "%"
+'%%' -->   FAIT             Affiche "%"
 
-/'/  -->                    Groupe les nombres par milliers (1 000 000 000)
+/'/  -->   FAIT pour d      Groupe les nombres par milliers (1 000 000 000)
 
 '*'  --> % *.* d , 5, 2, n  Largeur de champ ou precision, remplace par le prochain argument de va_lst
                             Doit etre un int
+
+'='  --> FAIT pour s et d   Centre au milieu de Width
                                      ----------------------------   
-                                            lenght modifier (6 mand)
+                                            lenght modifier (6 mand) FAIT POUR D
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 'l'  -->                    Pour les conversions d i o u x, l'argument est un long, pas un int
 'll' -->                    Pour les conversions d i o u x, l'argument est un long long, pas un int
@@ -83,37 +85,41 @@
                                             Conversions (8 mand, 8 bonus)
                 _________________________________________________________________
 
-'s' -->                     Argument converti en const char *. Si precision = n, ecrire n caracteres. ====> FAIT
+'s' -->    FAIT             Argument converti en const char *. Si precision = n, ecrire n caracteres. ====> FAIT
                             Si 'ls', string en unicode
 
 'S' -->                     Cf 'ls'
 
 'p' -->                     Argument pointeur type void *, affichage en hexa (%#X)
 
-'d' -->                     Argument int converti en chiffre decimal signe.
-                            Precision == nombre minimal de chiffres. par defaut 1. si prec 0 et n = 0, sortie vide
+'d' -->    FAIT             Argument int converti en chiffre decimal signe.
+                            Precision == nombre minimal de chiffres. par defaut 1. s
 
-'D' -->                     Same as 'd'            
+'D' -->    FAIT             Same as 'd'            
 
-'i' -->                     Same as 'd'
+'i' -->    FAIT             Same as 'd'
 
-'o' -->                     Chiffe octal non signe. 0 converti avec precision de 0 --> sortie vide
+'o' -->    FAIT             Chiffe octal non signe. 0 converti avec precision de 0 --> sortie vide
 
-'O' -->                     Same as 'o'
+'O' -->    FAIT             Same as 'o'
 
-'u' -->                     Chiffre decimal non signe. 0 converti avec precision de 0 --> sortie vide
+'u' -->    FAIT             Chiffre decimal non signe. 0 converti avec precision de 0 --> sortie vide
 
-'U' -->                     Same as 'u'
+'U' -->    FAIT             Same as 'u'
 
-'x' -->                     Chiffre hexadecimal non signe. utilise abcdef. 0 converti avec precision de 0 --> sortie vide
+'x' -->    FAIT             Chiffre hexadecimal non signe. utilise abcdef. 0 converti avec precision de 0 --> sortie vide
 
-'X' -->                     Chiffre hexadecimal non signe. utilise ABCDEF. 0 converti avec precision de 0 --> sortie vide
+'X' -->    FAIT             Chiffre hexadecimal non signe. utilise ABCDEF. 0 converti avec precision de 0 --> sortie vide
 
-'c' -->                     L'argument de type int est converti en unsigned char et le caractere correspondant est affiche
+'c' -->    FAIT             L'argument de type int est converti en unsigned char et le caractere correspondant est affiche
                             Si 'lc', unicode.
 
 'C' -->                     Cf 'lc'
+
                                        ---------------------------------
+                                                     Bonus
+                                       ---------------------------------
+
 'e' -->                     Argument reel converti en type double. Affichage du type x,000000eyz. Par defaut, precision = 6.
                             Si precision = 0, pas de point. Precision = nombres de chiffres apres la virgule.
 
@@ -130,7 +136,7 @@
 
 'n' -->                     Pas d'ecriture. Le nombre de caractere ecrit atm stored in %n.     
 
-'b' -->                     Int en binaire.
+'b' -->     FAIT            Int en binaire.
 
 ____________________________________________________________________________________________________________________________________________________
 

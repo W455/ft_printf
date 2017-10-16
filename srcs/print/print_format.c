@@ -6,44 +6,43 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 23:00:41 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/12 01:21:13 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/13 18:34:06 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	format_print(t_flag *env, const char *format)
+void	format_print(t_flag *flag, const char *fmt)
 {
-    void (*fun_ptr)(va_list *app, struct s_flag *flag);  
+	void (*fun_ptr)(va_list *app, struct s_flag *flag);
 
-    env->i = 0;
-    env->fd = 1;
-    while (*format  && env->n_printed >= 0)
-    {
-        if (*format != '%' && *format)
-            add_to_buff(env, *format++);
-        else
-        {
-                if (env->init == 0)
-                    init_flag(env);
-                reset_flag(env);
-                get_flags((char *)(format), env);              
-                fun_ptr = env->cvt[ID];   
-                if (env->cvt[ID])
-                    fun_ptr(&env->ap, env);
-               while (*format != ID && *format)
-                    format++;
-                format++;
-        }
-    }
-    add_to_buff(env, *format);
+	flag->i = 0;
+	while (*fmt && flag->n_printed >= 0)
+	{
+		if (*fmt != '%' || *(fmt + 1) == '%')
+			add_to_buff(flag, *fmt++);
+		else
+		{
+			if (flag->init == 0)
+				init_flag(flag);
+			reset_flag(flag);
+			fmt += get_flags((char *)fmt, flag);
+			fun_ptr = flag->cvt[flag->id];
+			if (flag->cvt[flag->id])
+				fun_ptr(&(flag->ap), flag);
+			else
+				fmt--;
+		}
+	}
+	write(1, flag->buff, flag->i);
+	flag->i = 0;
 }
 
 void    add_to_buff(t_flag *env, char c)
 {
     if (INDEX == BUFF_SIZE)
     {
-        write(env->fd, BUFFER, BUFF_SIZE);
+        write(env->fd, BUFF, BUFF_SIZE);
         INDEX = 0;
     }
     BUFF[INDEX++] = c;
