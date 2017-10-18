@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cvt_mod.c                                          :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/12 21:58:26 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/18 18:04:46 by oukrifa          ###   ########.fr       */
+/*   Created: 2017/04/13 22:36:30 by oukrifa           #+#    #+#             */
+/*   Updated: 2017/10/18 00:47:15 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void    conv_mod(va_list *ap, t_flag *env)
+int		ft_isdigit(int c)
 {
-    char buf[2];
-
-    buf[0] = '%';
-    buf[1] = 0;
-    PRECISION = 1;
-    put_s(buf, env);
+	return ((c >= 48 && c <= 57) ? 1 : 0);
 }

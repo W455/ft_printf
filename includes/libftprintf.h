@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 17:51:35 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/17 00:04:38 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/18 00:49:00 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,16 @@ typedef struct                  s_flag
 }                               t_flag;
 
 char	            *ft_itoa_base(unsigned long long nb, int base, 
-                        char *basef, char *buf, t_flag *env);
+                    char *basef, char *buf, t_flag *env);
+void	            ft_bzero(void *b, size_t len);
+int		            ft_isdigit(int c);
+size_t		        ft_strlen(const char *s);
+void	            *ft_memchr(const void *str, int c, size_t n);
+void	            *ft_memset(void *b, int c, size_t len);
+
+
+                    
+
 long long	        ft_printf_get_arg(va_list *ap, t_flag *env);
 
 
@@ -104,16 +113,16 @@ void                conv_mod(va_list *ap, t_flag *env);
 void                conv_lc(va_list *ap, t_flag *env);
 void                conv_ls(va_list *ap, t_flag *env);
 void                conv_s(va_list *ap, t_flag *env);
-void                conv_n(va_list *ap, t_flag *env);
+//void                conv_n(va_list *ap, t_flag *env);
 void                conv_o(va_list *ap, t_flag *env);
 void                conv_u(va_list *ap, t_flag *env);
 void                conv_x(va_list *ap, t_flag *env);
 void                conv_X(va_list *ap, t_flag *env);
 void                conv_b(va_list *ap, t_flag *env);
-void                conv_e(va_list *ap, t_flag *env);
-void                conv_E(va_list *ap, t_flag *env);
+//void                conv_e(va_list *ap, t_flag *env);
+//void                conv_E(va_list *ap, t_flag *env);
 void                conv_c(va_list *ap, t_flag *env);
-void                conv_g(va_list *ap, t_flag *env);
+//void                conv_g(va_list *ap, t_flag *env);
 void	            conv_d(va_list *ap, t_flag *flag);
 
 
@@ -135,4 +144,11 @@ int                 ft_vprintf(const char *format, va_list ap);
 int                 ft_vfprintf(FILE *stream, const char *format, va_list ap);
 int                 ft_vsprintf(char *str, const char *format, va_list ap); 
 int                 ft_vsnprintf(char *str, size_t size, const char *format, va_list ap);
+
+void			put_ls(wchar_t *p, int len, t_flag *flag);
+void		    conv_ls(va_list *app, t_flag *flag);
+void	        conv_lc(va_list *app, t_flag *flag);
+
+
+
 #endif

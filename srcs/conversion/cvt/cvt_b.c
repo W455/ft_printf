@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 18:30:57 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/17 01:09:17 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/17 22:24:22 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void			conv_b(va_list *ap, t_flag *env)
     ft_itoa_base(nbr, 2, BASE_MAJ, buf, env);
     if (PRECISION == 0 && *buf == '0')
         return ;
-	put_d(buf, ft_strlen(buf), env, 0);
+	put_d(buf, ft_strlen(buf), env, FLAG['#'] && *buf ? 1 : 0);
 }

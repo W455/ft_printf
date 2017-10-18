@@ -6,29 +6,11 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 23:46:55 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/17 00:12:53 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/18 23:15:03 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-/*
-static	char	*cvt_d(unsigned long long nbr, char *buf)
-{
-	char	*p;
-
-	p = buf + 44;
-	*p = 0;
-	if (nbr == 0)
-		*--p = '0';
-	while (nbr)
-	{
-		*--p = nbr % 10 + '0';
-		nbr /= 10;
-	}
-	return (p);
-}
-*/
 
 void			conv_d(va_list *ap, t_flag *env)
 {
@@ -53,7 +35,9 @@ void			conv_d(va_list *ap, t_flag *env)
 		nbr < 0 ? FLAG[' '] = 0 : 0;
 	}
 	sign = (FLAG['+'] || FLAG[' ']) ? 1 : 0;
-    if (PRECISION == 0 && *buf == '0')
+    if (PRECISION == 0 && *buf == '0' && !WIDTH)
         return;
+    if (PRECISION == 0 && nbr == 0 && WIDTH)
+        *buf = ' ';
 	put_d(buf, ft_strlen(buf), env, sign);
 }

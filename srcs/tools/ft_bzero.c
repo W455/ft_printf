@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cvt_mod.c                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/12 21:58:26 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/18 18:04:46 by oukrifa          ###   ########.fr       */
+/*   Created: 2017/04/12 17:17:54 by oukrifa           #+#    #+#             */
+/*   Updated: 2017/10/18 00:46:48 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void    conv_mod(va_list *ap, t_flag *env)
+void	ft_bzero(void *b, size_t len)
 {
-    char buf[2];
-
-    buf[0] = '%';
-    buf[1] = 0;
-    PRECISION = 1;
-    put_s(buf, env);
+	ft_memset(b, '\0', len);
 }

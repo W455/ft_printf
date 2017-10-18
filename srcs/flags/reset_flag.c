@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset_flag.c                                       :+:      :+:    :+:   */
+/*   reset_flag.c                                        :+:      :+:     :+:  */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/06 01:10:59 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/17 00:56:10 by oukrifa          ###   ########.fr       */
+/*   Created: 2017/10/18 17:10:50 by oukrifa           #+#    #+#             */
+/*   Updated: 2017/10/18 17:10:53 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ static	void	init_cvt(t_flag *env)
 {
     /*
     env->cvt['n'] = &conv_n;
-	env->cvt['p'] = &conv_x;
-	env->cvt['C'] = &conv_lc;
-	env->cvt['S'] = &conv_ls;
     env->cvt['e'] = &conv_e;
     env->cvt['E'] = &conv_E; 
     env->cvt['g'] = &conv_g;
     env->cvt['G'] = &conv_g;
     */    
+	env->cvt['p'] = &conv_x;
+	env->cvt['C'] = &conv_lc;
+	env->cvt['S'] = &conv_ls;
     env->cvt['b'] = &conv_b;
 	env->cvt['X'] = &conv_X;
 	env->cvt['x'] = &conv_x;

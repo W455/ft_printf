@@ -42,6 +42,7 @@
      --> % # x / X          Notation hexa commence par 0x / X
      --> % # aA eE fF gG    Notation decimal avec toujours un '.', 
                             pour gG pas de suppression des 0 en tete
+        A regler
 
 '0'  --> %0d                Si width defini, precede avec des 0 a gauche. 
                             '-' et la precision pour les entiers override '0'

@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 22:47:16 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/17 00:32:47 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/18 22:08:52 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static	void	flag_conflict(t_flag *env)
 	env->id == 'O' ? env->id = 'o' : 0;
 	env->id == 'p' ? env->flag['#'] = 1 : 0;
 	env->id == 'p' ? env->flag['L'] = 1 : 0;
+	env->id == 'p' ? env->id = 'x' : 0;
     env->id == 'S' ? env->flag['l'] = 1 : 0;
 	env->id == 'S' ? env->id = 's' : 0;
     env->id == 'C' ? env->flag['l'] = 1 : 0;
@@ -51,35 +52,35 @@ int            get_flags(char *s, t_flag *env)
 {
     char *start = s;
     while (*++s)
-    {    
-        FLAG[*s] = is_flag(*s) ? 1 : 0; 
-        *s == '0' && *(s - 1) == '.' ? FLAG['0'] = 0 : 1;
-        is_conv(*s) ? ID = *s : 0;                      
+    {   
+        //if (is_flag(*s))
+       // {
+            FLAG[*s] = is_flag(*s) ? 1 : 0; 
+            *s == '0' && *(s - 1) == '.' ? FLAG['0'] = 0 : 1;
+        //if(*s == '0')
+          //  FLAG['0'] = 1;
+       //s printf("flag[0] = %d et width = %d.\n", FLAG['0'], WIDTH);    
         if (is_conv(*s))  
+        {
+            is_conv(*s) ? ID = *s : 0;                      
             break ;
+        }
         else if (ft_isdigit(*s) && *s != '0' && *(s - 1) != '.')
         {
             WIDTH = 0;
             while (ft_isdigit(*s))
-                WIDTH = WIDTH * 10 + *s++ - '0';
+            WIDTH = WIDTH * 10 + *s++ - '0';
             s--;          
         }
-        else if ((ft_isdigit(*s) && *(s - 1) == '.'))
+        else if (*s == '.')
         {
+            s++;
             PRECISION = 0;
             while (ft_isdigit(*s))
-                PRECISION = PRECISION * 10 + *s++ - '0';
+            PRECISION = PRECISION * 10 + *s++ - '0';
             s--;
         }     
     }
     flag_conflict(env);
     return (s - start + 1);
-}
-
-void    conv_hash(va_list *ap, t_flag *env)
-{
-    ID == 'o' ? add_to_buff(env, '0') : 0;
-    ID == 'x' || ID == 'X' ? add_to_buff(env, '0') : 0;
-    ID == 'x' ? add_to_buff(env, 'x') : 0;
-    ID == 'X' ? add_to_buff(env, 'X') : 0;
 }

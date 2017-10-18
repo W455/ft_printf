@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/07 17:58:00 by oukrifa           #+#    #+#              #
-#    Updated: 2017/10/17 01:09:18 by oukrifa          ###   ########.fr        #
+#    Updated: 2017/10/18 00:49:38 by oukrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CC				= 	gcc
 LIB				= 	ar rc
 RAN				= 	ranlib
 
-CFLAGS 			= 	-Wall -Wextra -Werror
-LIB				=	libft.a
+CFLAGS 			= 	#-Wall -Wextra -Werror
+LIB_NAME		=	libft.a
 
 #===============================================================================
 # 						PATHS
@@ -26,6 +26,7 @@ SRC_PATH		=	./srcs/
 
 PUT_PATH		=	$(addprefix $(SRC_PATH), conversion/put/)
 CVT_PATH		=	$(addprefix $(SRC_PATH), conversion/cvt/)
+TOOLS_PATH		=	$(addprefix $(SRC_PATH), tools/)
 FLAGS_PATH		=	$(addprefix $(SRC_PATH), flags/)
 PRINT_PATH		=	$(addprefix $(SRC_PATH), print/)
 
@@ -45,76 +46,76 @@ SRC_CVT		= 		cvt_mod.c \
 					cvt_o.c   \
 					cvt_u.c   \
 					cvt_x.c   \
-					cvt_p.c   \
 					cvt_c.c   \
 					cvt_s.c   \
 					cvt_b.c   \
-					cvt_f.c   \
-					cvt_n.c   \
-					uni.c     \
-					uni_util.c
+
 
 SRC_FLAGS	=		get_flags.c        \
-					get_format_util.c \
-					color.c           \
-					get_options.c
+					reset_flag.c        \
+					#get_format_util.c \
+					#color.c           \
+					#get_options.c
 
 SRC_PRINT	=		ft_printf.c \
-					printf_format.c
+					print_format.c
 
-SRC_PUT		=		put_d.c    \
+SRC_TOOLS	=		ft_itoa_base.c	\
+					ft_bzero.c		\
+					ft_isdigit.c	\
+					ft_memchr.c		\
+					ft_memset.c		\
+					ft_strlen.c 	
+
+SRC_PUT		=		cast.c     \
 					put_s.c    \
-					put_o.c    \
-					put_x.c    \
+					put_c.c    \
 					put_ls.c   \
-					put_p.c    \
-					put_u.c    \
-					put_f.c    \
-					put_util.c
+					put_d.c    
 
 
 OBJ_NAME	=		$(SRC_FLAGS:.c=.o) \
 					$(SRC_PRINT:.c=.o) \
+					$(SRC_TOOLS:.c=.o)   \
 					$(SRC_CVT:.c=.o)   \
 					$(SRC_PUT:.c=.o)
 
 SRC			=		$(addprefix $(PRINT_PATH), $(SRC_PRINT)) \
 					$(addprefix $(FLAGS_PATH), $(SRC_FLAGS)) \
+					$(addprefix $(TOOLS_PATH), $(SRC_TOOLS)) \
 					$(addprefix $(CVT_PATH), $(SRC_CVT))     \
-					$(addprefix $(PUT_PATH), $(SRC_PUT))
+					$(addprefix $(PUT_PATH), $(SRC_PUT))	 \
 
 OBJ			=		$(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
-INC			=		$(addprefix -I, $(INC_PATH))
+INC			=		$(INC_PATH)
 
 #===============================================================================
 # 						Rules
 #===============================================================================
 all 		: 		$(NAME)
 
-$(NAME) 	:		$(OBJ)
-					
-
-					@echo "Building libftprintf.a..."
-					$(LIB) $(NAME) $(OBJ)
-					clear
-					@echo "\033[0;32mDone\033[0m\n"
-
-					@echo "Ranlibing libftprintf.a..."
-					$(RAN) $(NAME)
-					clear
-					@echo "\033[0;32mDone\033[0m\n"
-					@echo "\033[3;94m!libftprintf.a done!\033[0m"
-
-$(OBJ)		:		$(SRC) $(INC)
+$(NAME) 	:		$(SRC)
 					@echo "Compiling sources..."
 					mkdir -p $(OBJ_PATH)
 					make -C libft
 					make -C libft clean
-					$(CC) $(CFLAGS) -I $(INC) -L$(LIBFT_PATH) -lft -c $(SRC)
-					clear
+					$(CC) $(CFLAGS) -c $^ -I $(INC)
+					mv $(OBJ_NAME) $(OBJ_PATH)
+					#@clear
 					@echo "\033[0;32mDone\033[0m\n"
 
+					@echo "Building libftprintf.a..."
+					$(LIB) $(NAME) $(OBJ)
+					#@clear
+					@echo "\033[0;32mDone\033[0m\n"
+
+					@echo "Ranlibing libftprintf.a..."
+					$(RAN) $(NAME)
+					#@clear
+					@echo "\033[0;32mDone\033[0m\n"
+					@echo "\033[3;94m!libftprintf.a done!\033[0m"
+					
 
 clean 		:
 					@echo "Deleting .os... for libftprintf.a"
@@ -131,5 +132,8 @@ fclean 		: 		clean
 re 			: 		fclean $(NAME)
 
 mr_propre	: 		re clean
+
+test		:		$(NAME)
+					$(CC) $(CFLAGS) main.c -o test -L./ -lftprintf -Llibft -lft -I $(INC)
 
 .PHONY: 			re fclean clean all mr_propre print

@@ -6,11 +6,11 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 22:47:44 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/17 00:52:51 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/17 23:46:29 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libftprintf.h"
+#include "libftprintf.h"
 
 static int		ft_len(unsigned long long nbr, int base, t_flag *env)
 {

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cvt_mod.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/12 21:58:26 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/18 18:04:46 by oukrifa          ###   ########.fr       */
+/*   Created: 2017/04/13 22:47:18 by oukrifa           #+#    #+#             */
+/*   Updated: 2017/10/18 00:49:19 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void    conv_mod(va_list *ap, t_flag *env)
+void	*ft_memset(void *b, int c, size_t len)
 {
-    char buf[2];
+	unsigned char	*p;
 
-    buf[0] = '%';
-    buf[1] = 0;
-    PRECISION = 1;
-    put_s(buf, env);
+	p = (unsigned char *)b;
+	while (len--)
+		p[len] = (unsigned char)c;
+	return (p);
 }

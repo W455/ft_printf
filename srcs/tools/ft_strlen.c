@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cvt_mod.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/12 21:58:26 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/18 18:04:46 by oukrifa          ###   ########.fr       */
+/*   Created: 2017/04/13 23:06:01 by oukrifa           #+#    #+#             */
+/*   Updated: 2017/10/18 00:46:20 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void    conv_mod(va_list *ap, t_flag *env)
+size_t		ft_strlen(const char *s)
 {
-    char buf[2];
+	unsigned int index;
 
-    buf[0] = '%';
-    buf[1] = 0;
-    PRECISION = 1;
-    put_s(buf, env);
+	index = 0;
+	while (s[index])
+		index++;
+	return (index);
 }
