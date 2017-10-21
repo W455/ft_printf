@@ -26,10 +26,12 @@ void			reset_flag(t_flag *env)
 	FLAG['-'] = 0;
 	FLAG[' '] = 0;
 	FLAG['.'] = 0;
-    FLAG['*'] = 0;	
+    FLAG['*'] = 0;
     FLAG['#'] = 0;
-    FLAG['$'] = 0; 
-    PRECISION = -1;    
+    FLAG['$'] = 0;
+    FLAG[','] = 0;
+    FLAG['='] = 0;
+    PRECISION = -1;
 	WIDTH = 0;
     ID = 0;
     env->a = 0;

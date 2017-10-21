@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 23:45:23 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/18 22:59:36 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/20 00:01:46 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 static	void	ft_put_space(int call, int sign, int len, t_flag *env)
 {
     if (FLAG['\''] || FLAG[','])
-        len = len + (len + 1) / 3 - sign - (len % 3 == 0 || len % 3 == 2 ? 1 : 0);
+        len += (len + 1) / 3 - sign - (len % 3 == 0 || len % 3 == 2 ? 1 : 0);
     if (call == 1)
     {
         while (!FLAG['-'] && !FLAG['0'] && !FLAG['='] && WIDTH >
         (PRECISION > len ? PRECISION : len) + sign)
-            add_to_buff(env, ' ');
-
+        add_to_buff(env, ' ');
+        
         while (!FLAG['-'] && !FLAG['0'] && FLAG['='] && WIDTH > len && env->a--
         && WIDTH > (PRECISION > len ? PRECISION : len) + sign)
-             add_to_buff(env, ' ');
+        add_to_buff(env, ' ');
     }
     else if (call == 2)
     {
@@ -34,7 +34,7 @@ static	void	ft_put_space(int call, int sign, int len, t_flag *env)
             add_to_buff(env, ' ');
     }
 }
-    
+
 static	void	ft_put_sign(t_flag *env, int sign)
 {
     if (FLAG['#'] && sign)
@@ -55,9 +55,9 @@ static	void	ft_put_sign(t_flag *env, int sign)
 
 static	void	ft_put_precision_or_0(t_flag *env, int len)
 {
-    //printf("blabla %d et prec = %d.\n", FLAG['0'], PRECISION);
     if (PRECISION == -1 && FLAG['0'])
-        PRECISION = WIDTH;
+    PRECISION = WIDTH;
+    FLAG['#'] && ft_memchr("xX", ID, 2) ? PRECISION++ : 0;
     while (PRECISION-- > len)
         add_to_buff(env, '0');
 }
@@ -67,6 +67,8 @@ static	void	ft_put_value(t_flag *env, int len, char *p)
     int a;
     
     a = 0;
+    if (env->id == 'c')
+        add_to_buff(env, *p++);
     while (*p)
     {
         if (FLAG['\''] && (len - a++) % 3 == 0 && a - 1)
@@ -85,7 +87,6 @@ void			put_d(char *p, int len, t_flag *env, int sign)
     env->a = (WIDTH - l_just) / 2 + (WIDTH - l_just) % 2 - sign;
     env->b = (WIDTH - l_just) / 2;
     FLAG['#'] && ft_memchr("xX", ID, 2) ? len++ : 0;
-    FLAG['#'] && ft_memchr("xX", ID, 2) ? PRECISION++ : 0;
     FLAG['#'] && ft_memchr("b", ID, 2) ? WIDTH-- : 0;
     WIDTH ? ft_put_space(1, sign, len, env) : 0;
     sign ? ft_put_sign(env, sign) : 0;

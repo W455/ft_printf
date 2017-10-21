@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 23:52:10 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/18 23:06:21 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/18 23:22:00 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void			conv_x(va_list *ap, t_flag *env)
     ft_itoa_base(nbr, 16, BASE_MIN, buf, env);
     if (PRECISION == 0 && nbr == 0 && !WIDTH)
         return ;
-    else if (PRECISION == 0 && nbr == 0 && WIDTH)
-        *buf = ' ';
+    (PRECISION == 0 && nbr == 0 && WIDTH) ? *buf = ' ' : 0;
 	put_d(buf, ft_strlen(buf), env, FLAG['#'] && *buf != '0' ? 1 : 0);
 }
 
@@ -41,8 +40,7 @@ void			conv_X(va_list *ap, t_flag *env)
 			env->flag['j']) ? nbr : (unsigned int)nbr;
     ft_itoa_base(nbr, 16, BASE_MAJ, buf, env);
     if (PRECISION == 0 && nbr == 0 && !WIDTH)
-    return ;
-    else if (PRECISION == 0 && nbr == 0 && WIDTH)
-        *buf = ' ';
+        return ;
+    (PRECISION == 0 && nbr == 0 && WIDTH) ? *buf = ' ' : 0;
 	put_d(buf, ft_strlen(buf), env, FLAG['#'] && *buf != '0' ? 1 : 0);
 }

@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 17:51:35 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/18 00:49:00 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/20 20:27:01 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	            *ft_memset(void *b, int c, size_t len);
 long long	        ft_printf_get_arg(va_list *ap, t_flag *env);
 
 
-int                 get_flags(char *s, t_flag *env);
+void	    	    get_flags(t_flag *env, const char **fmt);
 void			    reset_flag(t_flag *env);
 void			    init_flag(t_flag *flag);
 

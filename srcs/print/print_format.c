@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 23:00:41 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/13 18:34:06 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/20 20:27:10 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	format_print(t_flag *flag, const char *fmt)
 {
 	void (*fun_ptr)(va_list *app, struct s_flag *flag);
 
-	flag->i = 0;
+    flag->i = 0;    
 	while (*fmt && flag->n_printed >= 0)
 	{
 		if (*fmt != '%' || *(fmt + 1) == '%')
@@ -26,7 +26,7 @@ void	format_print(t_flag *flag, const char *fmt)
 			if (flag->init == 0)
 				init_flag(flag);
 			reset_flag(flag);
-			fmt += get_flags((char *)fmt, flag);
+			get_flags(flag, &fmt);
 			fun_ptr = flag->cvt[flag->id];
 			if (flag->cvt[flag->id])
 				fun_ptr(&(flag->ap), flag);

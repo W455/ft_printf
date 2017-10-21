@@ -136,4 +136,8 @@ mr_propre	: 		re clean
 test		:		$(NAME)
 					$(CC) $(CFLAGS) main.c -o test -L./ -lftprintf -Llibft -lft -I $(INC)
 
+test1		:		$(NAME)
+					make -C 2 re
+					$(CC) $(CFLAGS) main.c -o test1 -L./2/ -lftprintf -Llibft -lft -I $(INC)
+
 .PHONY: 			re fclean clean all mr_propre print

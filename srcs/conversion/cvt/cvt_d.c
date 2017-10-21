@@ -6,7 +6,7 @@
 /*   By: oukrifa <oukrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 23:46:55 by oukrifa           #+#    #+#             */
-/*   Updated: 2017/10/18 23:15:03 by oukrifa          ###   ########.fr       */
+/*   Updated: 2017/10/18 23:18:11 by oukrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void			conv_d(va_list *ap, t_flag *env)
 	sign = (FLAG['+'] || FLAG[' ']) ? 1 : 0;
     if (PRECISION == 0 && *buf == '0' && !WIDTH)
         return;
-    if (PRECISION == 0 && nbr == 0 && WIDTH)
-        *buf = ' ';
+    PRECISION == 0 && nbr == 0 && WIDTH ? *buf = ' ' : 0;
 	put_d(buf, ft_strlen(buf), env, sign);
 }
